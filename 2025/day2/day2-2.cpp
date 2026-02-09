@@ -21,7 +21,7 @@ vector<string> parse(string rangestr){
 
 // returns true if string is made up of a repeating substring
 bool repeats(string str){
-    for(int i = 1; i < str.length() / 2; i++){
+    for(int i = 1; i <= str.length() / 2; i++){
         string currsub = str.substr(0, i);
         /*
         string inverse = str.substr(i, str.length() - i);
@@ -37,16 +37,15 @@ bool repeats(string str){
             }
         }
         */
-       cout << str.length() % i << endl;
-        if (str.length() % i != 0){
+        if (str.length() % i != 0){ //optional optimization check
             continue;
         }
         // contruct test string 
         while(currsub.length() < str.length()){
-            currsub += currsub;
+            currsub += currsub.substr(0, i);
         }
-        cout << currsub << endl;
-        if(currsub == str){
+        //cout << "currsub: " << currsub << " str: " << str << endl;
+        if(currsub == str && currsub.length() > 1){
             return true;
         }
     }
@@ -66,7 +65,7 @@ int main(){
         vector<string> range = parse(rangestr);// first element is low, second is high
 
         // counts the number of invalid ids in the given range
-        for(long i = stol(range[0]); i < stol(range[1]); i++){
+        for(long i = stol(range[0]); i <= stol(range[1]); i++){
             string istr = to_string(i);
 
             if(repeats(istr)){
@@ -77,7 +76,7 @@ int main(){
 
     }
 
-    cout << accumulator << endl;
+    cout << "accumulator: " << accumulator << endl;
     
     return 0;
 }
