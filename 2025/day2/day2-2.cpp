@@ -23,16 +23,34 @@ vector<string> parse(string rangestr){
 bool repeats(string str){
     for(int i = 1; i < str.length() / 2; i++){
         string currsub = str.substr(0, i);
+        /*
         string inverse = str.substr(i, str.length() - i);
+        int repeats = 0;
         while( !inverse.empty()){
             string check = inverse.substr(0, i);
             inverse = inverse.substr(i, inverse.length() - i);
             if(currsub != check){
-                return false;
+                inverse = "";
+            }
+            else{
+                repeats = 1;   
             }
         }
+        */
+       cout << str.length() % i << endl;
+        if (str.length() % i != 0){
+            continue;
+        }
+        // contruct test string 
+        while(currsub.length() < str.length()){
+            currsub += currsub;
+        }
+        cout << currsub << endl;
+        if(currsub == str){
+            return true;
+        }
     }
-    return true;
+    return false;
 }
 
 int main(){
@@ -52,6 +70,7 @@ int main(){
             string istr = to_string(i);
 
             if(repeats(istr)){
+                cout << istr << endl;
                 accumulator += i;
             }
         }
