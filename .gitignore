@@ -34,3 +34,4 @@
 #debug
 .vscode/
 *.dSYM/
+*.DS_Store
