@@ -3,19 +3,15 @@
 #include <string>
 using namespace std; 
 
-
+//Brute force solution
 int main(){
     ifstream input("input.txt");
-    int accumulator;
+    int accumulator; // holds results
     string line;
     while(getline(input, line)){
         int max_num = 0;
         for(int i = 0; i < line.size(); i++){
             for(int j = i + 1; j < line.size(); j++){
-                if(i == j){
-                    continue;
-                }
-
                 char* ptr;
                 string num = line.substr(i, 1) + line.substr(j,1);
                 int curr = strtol(num.c_str(), &ptr, 10);
